@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Daniel Landa
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.Course" table="Course" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="teacher_has_course" cascade="lock" column="UserID" class="model.Teacher" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="sub_has_faculty" cascade="lock" column="FacultyID" class="model.Faculty" not-null="false" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="ECTS" column="ECTS" type="integer" length="11" not-null="true" lazy="false"/>
+		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_CE_has_course" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="CourseID" not-null="false"/>
+			<one-to-many class="model.Course_Effect"/>
+		</set>
+		<set name="ORM_Course_has_test_temp" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="CourseID" not-null="false"/>
+			<one-to-many class="model.Test_Template"/>
+		</set>
+	</class>
+</hibernate-mapping>

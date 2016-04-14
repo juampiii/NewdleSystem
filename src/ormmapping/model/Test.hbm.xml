@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Daniel Landa
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.Test" table="Test" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="score" column="Score" type="double" not-null="true" lazy="false"/>
+		<set name="ORM_Test_has_test_temp" table="Test_Template_Test2" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="TestID" not-null="true"/>
+			<many-to-many column="Test_TemplateID" class="model.Test_Template">
+			</many-to-many>
+		</set>
+		<set name="ORM_Test_has_students" table="User_Test3" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="TestID" not-null="true"/>
+			<many-to-many column="UserID" class="model.User">
+			</many-to-many>
+		</set>
+		<set name="ORM_Test_has_answers" table="Test_Answer3" lazy="true" cascade="save-update,lock">
+			<key column="TestID" not-null="true"/>
+			<many-to-many column="AnswerID" class="model.Answer">
+			</many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
