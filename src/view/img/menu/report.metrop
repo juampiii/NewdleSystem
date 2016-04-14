@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<IconProject Version="2.0" Name="report">
-  <Icon Name="Graph-01" HasCharacterMap="false" Data="M64,5.1430006L63.286486,11.908481 62.574169,18.674001 59.122931,15.221438 49.564644,24.856143 49.589999,24.881308 44.738304,29.768 34.04957,19.161486 16.246351,37.101002 11.357,32.249504 33.930229,9.5059996 34.083288,9.6579561 34.166595,9.5740004 44.675789,20.004088 54.253777,10.351877 50.471003,6.5700893 57.234251,5.8578291z M0,0L7.7270012,0 7.7270012,48.351 58.115002,48.351 58.115002,56.077002 7.7270012,56.077002 0,56.077002 0,48.351z" Location="User Interface" IsDirty="false" GroupName="User Interface" ExportCommand="MetroGraphicsPackage.IconCommand">
-    <Settings MainWidth="128" MainHeight="128" FlipX="1" FlipY="1" CustomSize="128" IconShape="Square" BackgroundBrush="#FF30751C" ContentWidth="68" ContentHeight="68" Angle="0" IsRect="false" SizeIndex="5" CustomWidth="128" CustomHeight="128" IsLinked="false" Padding="30" MaximumPadding="39" SldierValueChanged="MetroGraphicsPackage.IconCommand" IconBrush="#FFFFFCFC" FontFamily="Webdings" Character="&gt;" FlipCommand="MetroGraphicsPackage.IconCommand" IsBackgroundVisible="true" />
-  </Icon>
-</IconProject>

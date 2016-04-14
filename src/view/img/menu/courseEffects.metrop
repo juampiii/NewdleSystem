@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<IconProject Version="2.0" Name="courseEffects">
-  <Icon Name="Bullets - 01" HasCharacterMap="false" Data="M7.423,17.544L21.281,17.544 21.281,20.139 7.423,20.139z M0,16.35L4.983,16.35 4.983,21.333 0,21.333z M7.423,9.3680005L21.281,9.3680005 21.281,11.965 7.423,11.965z M0,8.1740007L4.983,8.1740007 4.983,13.157001 0,13.157001z M7.423,1.1940002L21.281,1.1940002 21.281,3.7890005 7.423,3.7890005z M0,0L4.983,0 4.983,4.9830008 0,4.9830008z" IsDirty="false" GroupName="Data" ExportCommand="MetroGraphicsPackage.IconCommand">
-    <Settings MainWidth="128" MainHeight="128" FlipX="1" FlipY="1" CustomSize="128" IconShape="Square" BackgroundBrush="#FFBD0000" ContentWidth="68" ContentHeight="68" Angle="0" IsRect="false" SizeIndex="5" CustomWidth="128" CustomHeight="128" IsLinked="false" Padding="30" MaximumPadding="39" SldierValueChanged="MetroGraphicsPackage.IconCommand" IconBrush="#FFF1F0F0" FontFamily="Webdings" Character="&gt;" FlipCommand="MetroGraphicsPackage.IconCommand" IsBackgroundVisible="true" />
-  </Icon>
-</IconProject>
