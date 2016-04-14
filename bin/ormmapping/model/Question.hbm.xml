@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Daniel Landa
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.Question" table="Question" lazy="false" discriminator-value="Question">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<discriminator column="Discriminator" type="string"/>
+		<many-to-one name="test_Template_has_question" cascade="lock" column="Test_TemplateID" class="model.Test_Template" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="points" column="Points" type="double" not-null="true" lazy="false"/>
+		<property name="text" column="Text" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="subevaluation_criteria" column="Subevaluation_criteria" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_CE_has_Question" table="Course_Effect_Question2" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="QuestionID" not-null="true"/>
+			<many-to-many column="Course_EffectID" class="model.Course_Effect">
+			</many-to-many>
+		</set>
+		<set name="ORM_Quest_has_answers" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="QuestionID" not-null="false"/>
+			<one-to-many class="model.Answer"/>
+		</set>
+		<component name="belong_question" class="service.Question_Service" update="true" insert="true">
+			<component name="bbdd_question_service" class="service.Common_Service" update="true" insert="true">
+				<component name="bbdd_testt_service" class="service.Test_Template_Service" update="true" insert="true">
+				</component>
+				<component name="teacher_Service" class="service.Teacher_Service" update="true" insert="true">
+				</component>
+				<component name="course_Effect_Service" class="service.Course_Effect_Service" update="true" insert="true">
+				</component>
+			</component>
+		</component>
+		<subclass name="model.Gap" discriminator-value="Gap" lazy="false">
+			<property name="answer_lenght" column="Answer_lenght" type="integer" length="11" not-null="false" lazy="false"/>
+		</subclass>
+		<subclass name="model.Closed" discriminator-value="Closed" lazy="false">
+			<property name="right_question" column="Right_question" type="integer" length="11" not-null="false" lazy="false"/>
+			<set name="ORM_Closed_has_choises" lazy="true" cascade="save-update,lock" inverse="true">
+				<key column="QuestionID" not-null="false"/>
+				<one-to-many class="model.Choise"/>
+			</set>
+		</subclass>
+		<subclass name="model.Open" discriminator-value="Open" lazy="false">
+		</subclass>
+	</class>
+</hibernate-mapping>

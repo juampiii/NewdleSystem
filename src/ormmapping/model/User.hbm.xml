@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Daniel Landa
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.User" table="`User`" lazy="false" discriminator-value="User">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<discriminator column="Discriminator" type="string"/>
+		<property name="StudentNumber" column="StudentNumber" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="email" column="Email" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="surname" column="Surname" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="password" column="Password" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="phone" column="Phone" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="adress" column="Adress" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="date_created" column="Date_created" type="date" not-null="false" lazy="false"/>
+		<set name="ORM_Stud_has_tests" table="User_Test3" lazy="true" cascade="save-update,lock">
+			<key column="UserID" not-null="true"/>
+			<many-to-many column="TestID" class="model.Test">
+			</many-to-many>
+		</set>
+		<subclass name="model.Student" discriminator-value="Student" lazy="false">
+			<property name="age" column="Age" type="integer" length="11" not-null="false" lazy="false"/>
+		</subclass>
+		<subclass name="model.Program_committee" discriminator-value="Program_committee" lazy="false">
+		</subclass>
+		<subclass name="model.Administrative_Stuff" discriminator-value="Administrative_Stuff" lazy="false">
+		</subclass>
+		<subclass name="model.Teacher" discriminator-value="Teacher" lazy="false">
+			<many-to-one name="teacher_has_faculty" cascade="lock" column="FacultyID" class="model.Faculty" not-null="false" lazy="no-proxy" access="field">
+			</many-to-one>
+			<set name="ORM_Teacher_has_test_temp" lazy="true" cascade="save-update,lock" inverse="true">
+				<key column="UserID" not-null="false"/>
+				<one-to-many class="model.Test_Template"/>
+			</set>
+			<set name="ORM_Course_has_teacher" lazy="true" cascade="save-update,lock" inverse="true">
+				<key column="UserID" not-null="true"/>
+				<one-to-many class="model.Course"/>
+			</set>
+			<component name="belong_teacher" class="service.Teacher_Service" update="true" insert="true">
+				<component name="bbdd_teacher_service" class="service.Common_Service" update="true" insert="true">
+					<component name="bbdd_testt_service" class="service.Test_Template_Service" update="true" insert="true">
+					</component>
+					<component name="question_Service" class="service.Question_Service" update="true" insert="true">
+					</component>
+					<component name="course_Effect_Service" class="service.Course_Effect_Service" update="true" insert="true">
+					</component>
+				</component>
+			</component>
+		</subclass>
+	</class>
+</hibernate-mapping>
